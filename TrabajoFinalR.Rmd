@@ -1,0 +1,112 @@
+---
+title: "Trabajo Final"
+author: "Sarai Diaz"
+output: 
+  html_document:
+    toc: true
+    theme: cerulean
+    df_print: paged
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup, include=FALSE}
+
+  packages_installed <- c("askpass" ,"assertthat" ,"backports" ,"base" ,"base64enc" ,"BH" ,"bitops" ,"boot" ,"brew" ,"broom" ,"callr" ,"cellranger" ,"class" ,"cli" ,"clipr" ,"clisymbols" ,"cluster" ,"codetools" ,"colorspace" ,"commonmark" ,"compiler" ,"covr" ,"crayon" ,"crosstalk" ,"curl" ,"datasets" ,"DBI" ,"dbplyr" ,"desc" ,"devtools" ,"digest" ,"dplyr" ,"DT" ,"ellipsis" ,"evaluate" ,"fansi" ,"farver" ,"fastmap" ,"forcats" ,"foreign" ,"fs" ,"generics" ,"ggplot2" ,"gh" ,"git2r" ,"glue" ,"graphics" ,"grDevices" ,"grid" ,"gtable" ,"haven" ,"highr" ,"hms" ,"htmltools" ,"htmlwidgets" ,"httpuv" ,"httr" ,"ini" ,"jsonlite" ,"KernSmooth" ,"knitr" ,"labeling" ,"later" ,"lattice" ,"lazyeval" ,"lifecycle" ,"lubridate" ,"magrittr" ,"markdown" ,"MASS" ,"Matrix" ,"memoise" ,"methods" ,"mgcv" ,"mime" ,"modelr" ,"munsell" ,"nlme" ,"nnet" ,"openssl" ,"packrat" ,"parallel" ,"PerformanceAnalytics" ,"pillar" ,"pkgbuild" ,"pkgconfig" ,"pkgload" ,"plogr" ,"plyr" ,"praise" ,"prettyunits" ,"processx" ,"progress" ,"promises" ,"ps" ,"purrr" ,"quadprog" ,"R6" ,"rcmdcheck" ,"RColorBrewer" ,"Rcpp" ,"RCurl" ,"readr" ,"readxl" ,"rematch" ,"remotes" ,"reprex" ,"reshape2" ,"rex" ,"rlang" ,"rmarkdown" ,"roxygen2" ,"rpart" ,"rprojroot" ,"rsconnect" ,"rstudioapi" ,"rversions" ,"rvest" ,"scales" ,"selectr" ,"sessioninfo" ,"shiny" ,"sourcetools" ,"spatial" ,"splines" ,"stats" ,"stats4" ,"stringi" ,"stringr" ,"survival" ,"sys" ,"tcltk" ,"testthat" ,"tibble" ,"tidyr" ,"tidyselect" ,"tidyverse" ,"tinytex" ,"tools" ,"translations" ,"usethis" ,"utf8" ,"utils" ,"vctrs" ,"viridisLite" ,"whisker" ,"withr" ,"xfun" ,"xml2" ,"xopen" ,"xtable" ,"xts" ,"yaml" ,"zeallot" ,"zoo")
+
+  packages_to_install <- setdiff(rownames(installed.packages()),packages_installed)
+  
+  if (length(packages_to_install) > 0) {
+     install.packages(packages_to_install)
+  }
+
+  library(tidyverse)  
+  library('DT')
+  library(ggplot2)
+  library(PerformanceAnalytics)
+  
+```
+
+### Recursos sobre expresiones regulares:
+  1. [Rpubs](http://rpubs.com/ydmarinb/429756)
+  2. [Metriplica](https://www.metriplica.com/informes-y-estudios-de-analitica-digital/recursos-herramientas-de-analitica/expresiones-regulares/)
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;De las páginas presentadas, [Rpubs](http://rpubs.com/ydmarinb/429756) es la mejor opción para aprender sobre expresiones regulares debido a su ventaja en apariencia y contenido:
+  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La apariencia resulta más atractiva y legible al estructurar su información en un menú de navegación lateral y la visualización de su detalle en el centro de la pantalla permitiendo así seleccionar cualquier tema sin necesidad de hacer scroll-down como ocurre en [Metriplica](https://www.metriplica.com/informes-y-estudios-de-analitica-digital/recursos-herramientas-de-analitica/expresiones-regulares/), aunque ofrece un simulador de expresiones regulares, funcionalidad que en [Rpubs](http://rpubs.com/ydmarinb/429756) no está presente, su usabilidad le hace perder esa ventaja.
+  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;El contenido en [Rpubs](http://rpubs.com/ydmarinb/429756) es más extenso y completo, un ejemplo de ello es la explicación que hacen ambas páginas sobre los metacaracteres especiales: en [Rpubs](http://rpubs.com/ydmarinb/429756) listan 5 tipos con su descripción mientras que en [Metriplica](https://www.metriplica.com/informes-y-estudios-de-analitica-digital/recursos-herramientas-de-analitica/expresiones-regulares/) sólo hacen un a breve mención de 3 sin descripción asociada.
+  
+### Recursos sobre markdown:
+
+  1. [Unavarra](http://www.unavarra.es/personal/tgoicoa/ESTADISTICA_RMarkdown_tomas/basicRmarkdown)
+  2. [Github Guides](https://guides.github.com/features/mastering-markdown/)
+  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tomando en cuenta la apariencia y contenido como critierio de evaluación, [Unavarra](http://www.unavarra.es/personal/tgoicoa/ESTADISTICA_RMarkdown_tomas/basicRmarkdown) resulta ser la mejor opción para aprender sobre expresiones markdown en R:
+  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Github Guides](https://guides.github.com/features/mastering-markdown/) ofrece una breve introdución sobre que es Markdown dando así un mayor contexto de la herramienta, pero enfocando su aplicación en Github, mientras que  [Unavarra](http://www.unavarra.es/personal/tgoicoa/ESTADISTICA_RMarkdown_tomas/basicRmarkdown) indica de forma sencilla y concisa los pasos para su instalación e implementación en R.
+  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Otra ventaja a destacar de [Unavarra](http://www.unavarra.es/personal/tgoicoa/ESTADISTICA_RMarkdown_tomas/basicRmarkdown) es la posibilidad de descargar los ejemplos que presenta, a diferencia de [Github Guides](https://guides.github.com/features/mastering-markdown/) que ni el resultado final de sus ejemplos se puede visualizar.
+  
+
+### Estudio descriptivo de los empleados de una empresa:
+
+  Carga de datos a través de una URL:
+
+```{r echo=FALSE}
+  #empleados <- read.csv("empleados.csv",header=TRUE,sep=",")
+
+  empleados <- read.csv("https://bit.ly/37wliwY",header=TRUE,sep=",")
+  DT::datatable(empleados,
+                options = list(searching = FALSE
+                              ,pageLength = 10
+                              ,lengthChange = FALSE
+                              )
+                )
+```
+
+
++ Gráfico de distribución de empleados que estan de baja por antiguedad y sexo 
+
+```{r echo=FALSE, message=FALSE}
+
+  empleados_de_baja <- empleados[,c("antiguedad","sexo","baja","area")]
+  
+  gg2 <- ggplot(empleados_de_baja
+                ,aes(x = antiguedad, y = baja, col = sexo)
+                ) + geom_point() + geom_smooth(alpha = 0.2) + facet_wrap(~ area)
+  
+  gg2 + theme_linedraw()
+
+
+```
+  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; En general la empresa tiene alta rotación de empleados en sus 2 primeros años de antigüedad y el área donde se evidencia más este comportamiento es en la técnica, donde los hombres con más de 5 pero menos de 10 años de antiguedad, presentan una leve tendencia a irse en comparación con las mujeres.
+
+### Gráfico de distribución de empleados por desempeño
+
+```{r , echo=FALSE}
+
+  empleados_distribucion <- empleados[,c("antiguedad","sexo","evaluacion","area")]
+  gg <- ggplot(empleados_distribucion, aes(x=area, y=antiguedad)) 
+  gg + geom_point(aes(size=evaluacion, shape=sexo, color=area, stroke=evaluacion))
+
+
+```
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; El área con menos participación pero con la mejor mínima puntación es la directiva, mientras que en el área ténica se observa más variedad y en la administrativa más constancia, pudiese ser debido al grado de rotación de cada área.
+
+### Gráfico de correlación de variables de los empleados de una empresa
+
+```{r , echo=FALSE}
+
+  empleados_correlacion <- empleados %>% select(antiguedad,edad,sexo,salario,evaluacion)
+  
+  chart.Correlation(sapply(empleados_correlacion, as.numeric))
+
+```
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; El desempeño y género de los empleados no tiene relación directa o indirecta con su salario, edad o antiguedad, pero éstas 3 ultimas si están directamente relacionadas entre ellas.
